@@ -101,8 +101,14 @@ blockquote {
 }
 
 pre {
-    padding: 2rem 1rem 1rem 1rem !important;
+    /* padding: 2rem 1rem 1rem 1rem !important;
     border-radius: 0.35rem;
+    tab-size: 4; */
+    padding: 2rem 1rem 1rem 1rem !important; 
+    margin: 1rem 0 !important; 
+    background: #272822; 
+    overflow: auto; 
+    border-radius: 0.35rem; 
     tab-size: 4;
 }
 
@@ -242,7 +248,7 @@ mark {
 
 .bg-color {
     background-image: linear-gradient(to right, #3e30bf 0%, #0f9d58 100%);
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
 .text-color {
