@@ -13,27 +13,44 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
     <title>静守流年</title>
     <link rel="icon" type="image/png" href="/favicon.png">
+    
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="/css/my.css">
 
-    <script src="/libs/jquery/jquery.min.js"></script>
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
-
-
 
 
 <body>
@@ -42,13 +59,10 @@
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
-                    <!-- 解决点击logo不回到首页的bug -->
-                    <div> 
-                        
-                        <img src="/medias/logo.png" class="logo-img" alt="LOGO">
-                        
-                        <span class="logo-span">静守流年</span>
-                    </div>
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">静守流年</span>
                 </a>
             </div>
             
@@ -128,6 +142,11 @@
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
     </a>
   </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
 </ul>
 
 
@@ -144,8 +163,6 @@
             
         </div>
     </div>
-
-    
 
     <ul class="menu-list mobile-menu-list">
         
@@ -218,12 +235,75 @@
         </li>
         
         
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/wjsoj" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
     </ul>
 </div>
 
 
         </div>
 
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/wjsoj" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
         
     </nav>
 
@@ -244,14 +324,18 @@
             <div class="description center-align">
                 
                 <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script src="/libs/typed/typed.js"></script>
                 <script>
                     var typed = new Typed("#subtitle", {
-                        strings: ['人生如逆旅，我亦是行人','Don&#39;t waste life in dobts and fears.'],
+                        strings: [ 
+                            
+                                "Don&#39;t waste life in dobts and fears.",
+                            
+                        ],
                         startDelay: 200,
-                        typeSpeed: 50,
+                        typeSpeed: 80,
                         loop: true,
-                        backSpeed: 20,
+                        backSpeed: 30,
                         showCursor: true
                     });
                 </script>
@@ -281,13 +365,14 @@
     <article id="articles" class="container articles">
         <div class="row article-row">
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2020/tan-li-shang-yin/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="谈李商隐">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="谈李商隐">
                             
                             <span class="card-title">谈李商隐</span>
                         </div>
@@ -329,14 +414,16 @@
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2020/kai-yuan-xie-yi/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="开源协议">
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="开源协议">
                             
                             <span class="card-title">开源协议</span>
                         </div>
@@ -377,14 +464,16 @@ A short and simple permissive license with conditions only requiring preservatio
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2020/cmder/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Cmder配置">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Cmder配置">
                             
                             <span class="card-title">Cmder配置</span>
                         </div>
@@ -425,14 +514,16 @@ Cmder官网提供两种版本的下载链接，其中Mini版是轻量级的，�
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2020/yi-qing/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Python及时获取疫情信息">
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Python及时获取疫情信息">
                             
                             <span class="card-title">Python及时获取疫情信息</span>
                         </div>
@@ -475,14 +566,16 @@ Cmder官网提供两种版本的下载链接，其中Mini版是轻量级的，�
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2020/wen-juan-xing/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="利用python自动化完成学校的问卷任务">
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="利用python自动化完成学校的问卷任务">
                             
                             <span class="card-title">利用python自动化完成学校的问卷任务</span>
                         </div>
@@ -524,14 +617,16 @@ Cmder官网提供两种版本的下载链接，其中Mini版是轻量级的，�
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2020/minecraft/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Minecraft配置合集">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Minecraft配置合集">
                             
                             <span class="card-title">Minecraft配置合集</span>
                         </div>
@@ -572,14 +667,16 @@ Cmder官网提供两种版本的下载链接，其中Mini版是轻量级的，�
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/vs-code/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="VS code常用插件及编译系统配置">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="VS code常用插件及编译系统配置">
                             
                             <span class="card-title">VS code常用插件及编译系统配置</span>
                         </div>
@@ -622,14 +719,16 @@ Cmder官网提供两种版本的下载链接，其中Mini版是轻量级的，�
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/xin-hua-lin-wen-ti/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="新华林问题">
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="新华林问题">
                             
                             <span class="card-title">新华林问题</span>
                         </div>
@@ -672,14 +771,16 @@ $$使得\ \ x \ast y \ast z=w^3 (w \in N)$$
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/sublime/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Sublime编译系统搭建与配置">
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Sublime编译系统搭建与配置">
                             
                             <span class="card-title">Sublime编译系统搭建与配置</span>
                         </div>
@@ -721,7 +822,9 @@ title Running
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/rqnoj/">
@@ -768,14 +871,16 @@ title Running
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/ou-la-shai/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="欧拉筛理解与实现">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="欧拉筛理解与实现">
                             
                             <span class="card-title">欧拉筛理解与实现</span>
                         </div>
@@ -818,7 +923,9 @@ title Running
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/bo-ke-yuan-pi-fu-pei-zhi/">
@@ -866,7 +973,9 @@ title Running
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/hello-world/">
@@ -913,14 +1022,16 @@ title Running
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
+             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2019/chang-yong-mo-ban-hui-zong/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="常用模板汇总">
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="常用模板汇总">
                             
                             <span class="card-title">常用模板汇总</span>
                         </div>
@@ -960,6 +1071,7 @@ title Running
                     
                 </div>
             </div>
+              <!-- 隐藏某个文章 -->
             
         </div>
     </article>
@@ -995,7 +1107,9 @@ title Running
 
     <footer class="page-footer bg-color">
     
-    <div class="container row center-align" style="margin-bottom: 15px !important;">
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
@@ -1004,65 +1118,85 @@ title Running
             <a href="/about" target="_blank">WJS</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
-            <br>
-            
-            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.8k</span>&nbsp;字
-            
-            
-            
-            
             
             <br>
             
-            <span id="sitetime">载入运行时间...</span>
-            <script>
-                function siteTime() {
-                    var seconds = 1000;
-                    var minutes = seconds * 60;
-                    var hours = minutes * 60;
-                    var days = hours * 24;
-                    var years = days * 365;
-                    var today = new Date();
-                    var startYear = "2020";
-                    var startMonth = "1";
-                    var startDate = "1";
-                    var startHour = "0";
-                    var startMinute = "0";
-                    var startSecond = "0";
-                    var todayYear = today.getFullYear();
-                    var todayMonth = today.getMonth() + 1;
-                    var todayDate = today.getDate();
-                    var todayHour = today.getHours();
-                    var todayMinute = today.getMinutes();
-                    var todaySecond = today.getSeconds();
-                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
-                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-                    var diff = t2 - t1;
-                    var diffYears = Math.floor(diff / years);
-                    var diffDays = Math.floor((diff / days) - diffYears * 365);
-                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
-                        minutes);
-                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
-                        diffMinutes * minutes) / seconds);
-                    if (startYear == todayYear) {
-                        document.getElementById("year").innerHTML = todayYear;
-                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
-                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
-                    } else {
-                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
-                        document.getElementById("sitetime").innerHTML = "本站已勉强运行 " + diffYears + " 年 " + diffDays +
-                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">50.8k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2020";
+                        var startMonth = "1";
+                        var startDate = "1";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
                     }
-                }
-                setInterval(siteTime, 1000);
-            </script>
+
+                    calcSiteTime();
+                </script>
             
             <br>
             
         </div>
-        <div class="col s12 m4 l4 social-link ">
+        <div class="col s12 m4 l4 social-link social-statis">
     <a href="https://github.com/wjsoj" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1200,6 +1334,30 @@ $(function () {
 });
 </script>
 
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
@@ -1215,6 +1373,24 @@ $(function () {
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
     <script src="/js/matery.js"></script>
 
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
@@ -1223,17 +1399,15 @@ $(function () {
     <script src="/libs/others/clicklove.js" async="async"></script>
     
     
-
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
     
 
     
 
-	
     
-    <script type="text/javascript" color="0,0,255"
-        pointColor="0,0,255" opacity='0.7'
-        zIndex="-1" count="99"
-        src="/libs/background/canvas-nest.js"></script>
+
+    <!--腾讯兔小巢-->
+    
     
 
     
@@ -1245,18 +1419,6 @@ $(function () {
     
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
-
-    <!-- 动态标签页 -->
-    <script type="text/javascript">
-        var OriginTitile = document.title,
-            st;
-        document.addEventListener("visibilitychange", function () {
-            document.hidden ? (document.title = "看不见我~看不见我~", clearTimeout(st)) : (document.title =
-                "欢迎回来！", st = setTimeout(function () {
-                    document.title = OriginTitile
-                }, 3e3))
-        })
-    </script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 
