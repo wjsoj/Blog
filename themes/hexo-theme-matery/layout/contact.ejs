@@ -1,0 +1,49 @@
+<!-- <link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/barrager.css">
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/js/jquery.barrager.js"></script>
+<script src="<%- theme.jsDelivr.url %><%- url_for('/libs/valine/Valine.min.js') %>"></script> -->
+
+<%- partial('_partial/bg-cover') %>
+<main class="content">
+    <div id="contact" class="container chip-container">
+        
+
+        <!--其他评论card-->
+        <div class="card">
+            <% if (theme.valine && theme.valine.enable) { %>
+                <%- partial('_partial/valine') %>
+            <% } %>
+
+            <% if (theme.gitalk && theme.gitalk.enable) { %>
+                <%- partial('_partial/gitalk') %>
+            <% } %>
+
+            <% if (theme.gitment.enable) { %>
+                <%- partial('_partial/gitment') %>
+            <% } %>
+
+            <% if (theme.disqus.enable) { %>
+                <%- partial('_partial/disqus') %>
+            <% } %>
+
+            <% if (theme.livere && theme.livere.enable) { %>
+                <%- partial('_partial/livere') %>
+            <% } %>
+
+            <% if (theme.waline && theme.waline.enable) { %>
+                <%- partial('_partial/waline') %>
+            <% } %>
+
+            <% if (theme.twikoo && theme.twikoo.enable) { %>
+                <%- partial('_partial/twikoo') %>
+            <% } %>
+
+            <% if (theme.changyan && theme.changyan.enable) { %>
+                <%- partial('_partial/changyan') %>
+            <% } %>
+
+        </div>
+    </div>
+</main>
