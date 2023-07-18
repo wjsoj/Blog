@@ -205,8 +205,8 @@ home:
   sidebar:
     enable: true # Whether to enable sidebar
     position: left # Sidebar position. left, right
-    first_item: menu # First item in sidebar. menu, info
-    announcement: # Announcement text
+    first_item: info # First item in sidebar. menu, info
+    announcement: 与君初相识，犹如故人归 # Announcement text
     links:
       Home: 
         path: / 
@@ -275,7 +275,7 @@ articles:
   # Table of contents settings
   toc:
     enable: true # Whether to enable TOC
-    max_depth: 4 # TOC depth
+    max_depth: 6 # TOC depth
     number: false # Whether to add number to TOC automatically
     expand: false # Whether to expand TOC
     init_open: true # Open toc by default
