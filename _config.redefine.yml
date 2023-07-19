@@ -59,7 +59,7 @@ global:
   # Effects on mouse hover
   hover:
     shadow: true # shadow effect
-    scale: false # scale effect
+    scale: true # scale effect
   # Scroll progress
   scroll_progress:
     bar: true # progress bar
@@ -127,7 +127,7 @@ home_banner:
     # Title font size
     title_size: 2.8rem
     # Subtitle font size
-    subtitle_size: 1.5rem
+    subtitle_size: 1.2rem
     # Line height between title and subtitle
     line_height: 1.2
   # Home banner custom font
@@ -141,7 +141,7 @@ home_banner:
   # Home banner social links
   social_links:
     # Whether to enable
-    enable: false
+    enable: true
     # Social links
     links:
       github: https://github.com/wjsoj # your GitHub URL
@@ -161,7 +161,7 @@ navbar:
   color:
     left: "#81FFEF" #left side 
     right: "#F067B4"  #right side
-    transparency: 75 #percent (10-99)
+    transparency: 55 #percent (10-99)
   # Navbar links
   links:
     Home: 
@@ -193,7 +193,7 @@ navbar:
   # Navbar search (local search). Requires hexo-generator-searchdb (npm i hexo-generator-searchdb). See https://github.com/theme-next/hexo-generator-searchdb
   search:
     # Whether to enable
-    enable: false
+    enable: true
     # Preload search data when the page loads
     preload: true
 # NAVIGATION BAR <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end

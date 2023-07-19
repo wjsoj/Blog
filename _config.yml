@@ -106,7 +106,7 @@ theme: redefine
 deploy:
   type: ''
 
-all_minifier: true
+# all_minifier: true
 
 mathjax:
   tags: none               # or 'ams' or 'all'
