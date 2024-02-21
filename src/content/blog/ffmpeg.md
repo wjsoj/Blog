@@ -5,7 +5,7 @@ tag: 'software'
 description: '记录使用ffmpeg完成一些常见操作所需要的命令参数，可以在必要时替代剪辑软件'
 ---
 
-# 1. FFmpeg
+## 1. FFmpeg
 
 [官方网站](http://ffmpeg.org/)
 
@@ -15,9 +15,9 @@ description: '记录使用ffmpeg完成一些常见操作所需要的命令参数
 
 FFmpeg是目前几乎所有主流播放器的核心，覆盖音视频编解码、剪辑拼接、录屏推流等多种功能。
 
-# 2. 常用命令
+## 2. 常用命令
 
-### 1. 查看FFmpeg支持的编码器
+1. ### 查看FFmpeg支持的编码器
 
 ```bash
 ffmpeg configure -encoders
@@ -67,7 +67,7 @@ H264编码转成MPEG4编码
 ffmpeg -i input.mp4 -strict -2 -vcodec mpeg4 output.mp4
 ```
 
-# 3. 视频压缩
+## 3. 视频压缩
 
 ```bash
 ffmpeg -i in.mp4 -vcodec h264 -vf scale=640:-2 -threads 4
@@ -120,7 +120,7 @@ libaom：AV1 编码器。
 参数来控制转码，取值范围为 0~51，其中0为无损模式，18~28是一个合理的范围，数值越大，画质越差。
 ```
 
-# 4. 过滤器
+## 4. 过滤器
 
 ### 1. 视频
 
@@ -147,7 +147,7 @@ loudnorm=I=-5:LRA=1
 可统一音量大小
 ```
 
-# 5. 视频剪辑
+## 5. 视频剪辑
 
 ### 1. 剪切
 
@@ -181,7 +181,7 @@ ffmpeg -f concat -i list.txt -c copy out.mp4
 ffmpeg -i 0.mp4 -i 1.mp4 -i 2.mp4 -i 3.mp4 -filter_complex "[0:v]pad=iw*2:ih*2[a];[a][1:v]overlay=w[b];[b][2:v]overlay=0:h[c];[c][3:v]overlay=w:h" out.mp4
 ```
 
-# 6. 其他操作
+## 6. 其他操作
 
 ### 1. .m3u8视频获取
 

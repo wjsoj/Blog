@@ -5,7 +5,7 @@ tag: 'software'
 description: '在Windows上使用VS code时，搭建编译系统是一件很令人头疼的事情'
 ---
 
-# 常用插件
+## 常用插件
 ### 1. Bracket Pair Colorizer
 
 如彩虹般顺滑的括号高亮匹配
@@ -46,6 +46,6 @@ Markdown即时预览，在Markdown编辑界面右键即可打开
 只是让图标更好看而已
 ![12.png](http://yanxuan.nosdn.127.net/b66a2e4458fcf3fc5e78a456d68de34e.png)
 
-# C++编译
+## C++编译
 直接更改Runcodde设置即可，然后右键->Run Code
 ![Run Code.png](http://yanxuan.nosdn.127.net/b1bdcad4f9e9fb01a73311c2f45d7d2c.png)
