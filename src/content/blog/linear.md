@@ -48,7 +48,7 @@ $$
 
 故关键在于证明新方阵列向量组线性无关，证明步骤如下：
 
-反证法，假设方阵的列向量组$\beta_{1},\cdots,\beta_{n}$线性相关，则$\exists k_{1},k_{2},\cdots,k_{s},k_{s+1},\cdots,k_{n}\in \mathbb K \quad 且 \ k_{1},k_{2},\cdots,k_{n}不全为0$，使得$k_{1}\beta_{1}+k_{2}\beta_{2}+\cdots+k_{n}\beta_{n}=\mathbf{0}$，由于方阵第s+1行到第n行的特殊性，容易得到$k_{s+1}=k_{s+2}=\cdots=k_{n}=0$，不妨设$\left|k_{l}\right|=max\{\left|k_{1}\right|,\left|k_{2}\right|,\cdots,\left|k_{n}\right|\}$，易得$\left|k_{l}\right|>0$且$ \ l \in \{1,2,\cdots,s\}$
+反证法，假设方阵的列向量组$\beta_{1},\cdots,\beta_{n}$线性相关，则$\exists k_{1},k_{2},\cdots,k_{s},k_{s+1},\cdots,k_{n}\in \mathbb K \quad $ 且 $ \ k_{1},k_{2},\cdots,k_{n}不全为0$，使得$k_{1}\beta_{1}+k_{2}\beta_{2}+\cdots+k_{n}\beta_{n}=\mathbf{0}$，由于方阵第s+1行到第n行的特殊性，容易得到$k_{s+1}=k_{s+2}=\cdots=k_{n}=0$，不妨设$\left|k_{l}\right|=max\{\left|k_{1}\right|,\left|k_{2}\right|,\cdots,\left|k_{n}\right|\}$，易得$\left|k_{l}\right|>0$且$ \ l \in \{1,2,\cdots,s\}$
 $$
 令\ i=l\qquad 有\ a_{ii}=-\frac{k_{1}}{k_{i}}a_{i1}-\frac{k_{2}}{k_{i}}a_{i2}-\cdots-\frac{k_{i-1}}{k_{i}}a_{i,i-1}-\frac{k_{i+1}}{k_{i}}a_{i,i+1}-\cdots-\frac{k_{n}}{k_{i}}a_{in}\\\\
 \left|a_{ii}\right|=\sum_{j=1,j\neq i}^{n}\left|\frac{k_{j}}{k_{i}}a_{ij}\right|=\sum_{j=1,j\neq l}^{n}\left|\frac{k_{j}}{k_{l}}a_{lj}\right|\le\sum_{j=1,j \neq l}^{n}\left|a_{lj}\right|\\\\
