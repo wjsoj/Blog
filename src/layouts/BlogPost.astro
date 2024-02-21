@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { mathjax = false } = Astro.props;
+---
+
+<head>
+{
+	mathjax && (
+		<script defer>
+				window.MathJax = {
+					tex: {
+						inlineMath: [['$', '$'], ['\\(', '\\)']]
+					},
+					svg: {
+						fontCache: 'global'
+					}
+				};
+			</script>
+			<script id="MathJax-script" async
+				src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js">
+			</script>
+	)
+}
+</head>
+
+<main class="flex justify-center py-10 mb-10">
+	<article class="max-w-[100vw] lg:max-w-3xl prose dark:prose-invert md:prose-lg lg:prose-xl prose-img:rounded-lg prose-headings:text-wrap px-4 md:px-8">
+		<slot />
+	</article>
+</main>
+
+<style is:global>
+article {
+	font-family: "Smiley";
+}
+
+article {
+	/* 修复锚点位置 */
+	h2::before,h3::before,h4::before,h5::before,h6::before {
+		content: "";
+		display: block;
+		height:  6rem;
+		margin-top: -6rem;
+		visibility: hidden;
+	}
+}
+</style>

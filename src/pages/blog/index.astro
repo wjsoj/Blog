@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import BlogInfo from '../../components/BlogInfo.jsx';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const years = [...new Set(posts.map((post) => post.data.pubDate.getFullYear()).flat())];
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<main class="flex flex-col justify-center items-center px-3 py-10 max-w-xl">
+		<section class="flex flex-col space-y-10">
+			{
+				years.map((year) => (
+					<div class="flex flex-col space-y-4 text-slate-800 dark:text-slate-200">
+						<div class="ml-4">
+							<h1 class="text-2xl lg:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br dark:from-pink-400 dark:to-orange-700 from-cyan-600 to-violet-600">{year}</h1>
+							<h2>共{(posts.filter((post)=> post.data.pubDate.getFullYear()===year)).length}篇文章</h2>
+						</div>
+						{
+							posts.filter((post)=> post.data.pubDate.getFullYear()===year).map((post) => (
+								<BlogInfo info={post.data} link={`/blog/${post.slug}/`} />
+							))
+						}
+					</div>
+				))
+			}
+		</section>
+	</main>
+</BaseLayout>

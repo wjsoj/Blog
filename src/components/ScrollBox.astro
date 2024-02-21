@@ -1,0 +1,85 @@
+---
+import Ability from "../layouts/Ability.astro";
+---
+
+<div id="scrollBox" class="flex justify-start items-start w-full overflow-hidden">
+  <div id="scrollContainer" class="flex flex-row justify-start items-center h-screen shrink-0 pr-4 md:pr-10 lg:pr-20">
+    <div class="scrollCard lg:px-10 w-screen lg:w-[80vw]">
+      <h1 id="scrollTitle" class="text-7xl lg:text-9xl font-extrabold text-slate-600 dark:text-white">
+        <span class="text-cyan-800 dark:text-cyan-200">And</span>
+        I'm <span class="text-red-600 dark:text-pink-300">A</span>...
+      </h1>
+      <img src="/starship.png" alt="starship" id="starship" class="absolute mx-auto lg:pr-10 bottom-2 z-[-10] " />
+    </div>
+    <div class="scrollCard px-4 lg:px-8 w-screen lg:w-[80vw]">
+      <div class="absolute rounded-full top-[-40px] lg:top-[-100px] left-[-50px] w-36 h-36 lg:w-72 lg:h-72 z-[-10]" style="background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%);"></div>
+      <Ability title="Student" desc="Major in Physics" imgsrc="/books.jpg" >
+      </Ability>
+      <div class="absolute rounded-full bottom-[-100px] right-0 w-48 h-48 lg:w-96 lg:h-96 z-[-10]" style="background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);"></div>
+    </div>
+    <div class="scrollCard px-4 lg:px-8 w-screen lg:w-[80vw]">
+      <div class="absolute mask mask-squircle top-[-20px] lg:top-[-100px] left-[-50px] w-32 h-32 lg:w-56 lg:h-56 z-[-10]" style="background-image: linear-gradient( 135deg, #F97794 10%, #623AA2 100%);"></div>
+      <Ability title="Developer" desc="Experienced in Frontend <br /> (By Producing Bugs)" imgsrc="/tailwind.png">
+      <div class="absolute mask mask-star-2 my-auto left-[200px] w-24 h-24 lg:w-56 lg:h-56 z-0 opacity-50" style="background-image: linear-gradient( 135deg, #97ABFF 10%, #123597 100%);"></div>
+      </Ability>
+      <div class="absolute mask mask-heart bottom-[-40px] right-0 w-36 h-36 lg:w-72 lg:h-72 z-[-10]" style="background-image: linear-gradient( 135deg, #F05F57 10%, #360940 100%);"></div>
+    </div>
+    <div class="scrollCard px-4 lg:px-8 w-screen lg:w-[80vw]">
+      <!-- <div class="absolute mask mask-squircle top-[-100px] left-[-50px] w-56 h-56 z-[-10]" style="background-image: linear-gradient( 135deg, #F97794 10%, #623AA2 100%);"></div> -->
+      <Ability title="Electronic MusicLover " desc="Not as goog as AI" imgsrc="/music.png">
+      </Ability>
+      <div class="absolute mask mask-hexagon bottom-[-40px] right-[-50px] w-48 h-48 lg:w-72 lg:h-72 z-[-10]" style="background-image: linear-gradient( 135deg, #FFA6B7 10%, #1E2AD2 100%);"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+div {
+  user-select: none;
+}
+
+.scrollCard {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: visible;
+  margin-left: 5rem;
+}
+</style>
+
+<script>
+const scrollbox = {
+  container: document.getElementById('scrollContainer'),
+  cards: [...document.getElementsByClassName('scrollCard')],
+  triggerDistance: 0,
+  borderDistance: 0,  
+  distance: 0,
+  resize() {
+    let _scrollbox = document.getElementById('scrollBox');
+    _scrollbox.style.height = `${this.container.offsetWidth}px`;
+    this.triggerDistance = _scrollbox?.offsetTop;
+    this.borderDistance = _scrollbox?.offsetTop + _scrollbox?.offsetHeight - window.innerHeight;
+  },
+  move() {
+    if (scrollY >= this.triggerDistance && scrollY <= this.borderDistance) {
+      this.distance = scrollY - this.triggerDistance;
+      this.container.style.transform = `translateY(${this.distance}px)`;
+      let distanceX = (this.distance) / (this.borderDistance - this.triggerDistance) * (this.container.offsetWidth - innerWidth);
+      for (let i = 0; i < this.cards.length; i++) {
+        this.cards[i].style.transform = `translateX(${-distanceX}px)`;
+      }
+      let title = document.getElementById("scrollTitle");
+      let starship = document.getElementById("starship");
+      title.style.transform = `translateX(${distanceX*0.3}px)`;
+      starship.style.transform = `translateX(${distanceX*0.5}px)`;
+    }
+  }
+};
+scrollbox.resize();
+window.addEventListener('resize', () => scrollbox.resize());
+window.addEventListener('scroll', () => scrollbox.move());
+</script>

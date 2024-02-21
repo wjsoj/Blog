@@ -1,0 +1,16 @@
+---
+const {title, link} = Astro.props
+---
+
+<div class="w-full mx-auto lg:px-20 md:px-16">
+  <div class="flex flex-col justify-center rounded-xl bg-gradient-to-br from-slate-200 to-slate-100 dark:from-slate-600 dark:to-slate-800 shadow-lg dark:shadow-slate-700 dark:shadow-inner px-8 pt-4 pb-1 relative overflow-hidden">
+    <div class=" absolute top-0 left-0 w-full h-full bg-slate-200 dark:bg-slate-800 opacity-20 dark:opacity-40"></div>
+    <div class=" absolute top-0 right-0 blur-3xl w-40 h-20 bg-pink-300/70 dark:bg-cyan-600/60 rounded-bl-full z-0"></div>
+    <a href={link} target="_blank" rel="noopener noreferrer" class="text-lg lg:text-xl text-slate-800 dark:text-white decoration-transparent font-semibold cursor-pointer z-0">
+      {title}
+    </a>
+    <p class="text-sm lg:text-base text-wrap text-slate-600 dark:text-slate-200 mt-0">
+      {link}
+    </p>
+  </div>
+</div>

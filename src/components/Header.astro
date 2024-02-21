@@ -1,0 +1,110 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import ThemeIcon from './ThemeIcon.astro';
+import { SITE_TITLE } from '../consts';
+
+interface Props {
+	class?: string;
+	limit?: boolean;
+	title?: string;
+	nosticky?: boolean;
+}
+
+const { class:className,limit = false,title = SITE_TITLE,nosticky = false } = Astro.props;
+---
+
+<header class:list={[{fixheight: limit},"sticky w-full top-0 z-50 transition-all easein duration-300"]}>
+	<!-- 小屏clip-path遮罩 -->
+	<div id="wrapper" class="fixed lg:hidden top-0 right-0 w-full h-full bg-gradient-to-br dark:from-pink-800 dark:to-violet-900 from-cyan-200 to-orange-300">
+		<div class="w-full h-full flex flex-col justify-center items-center space-y-8 text-2xl">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/tags">Category</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+			<!-- github -->
+			<div class="flex flex-row items-center space-x-1">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-700 dark:text-slate-200"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+				<a class="text-slate-700 dark:text-slate-200" href="https://github.com/wjsoj" target="_blank">GitHub</a>
+			</div>
+		</div>
+	</div>
+
+	<nav class:list={[className,'w-full flex flex-row justify-between lg:grid lg:grid-cols-3 items-center lg:justify-items-stretch px-4 lg:px-8 py-2 lg:py-4']}>
+		<h2 class="text-3xl lg:text-4xl font-bold text-slate-800 dark:text-slate-200 justify-self-start" id="pageTitle"><a href="/">{title}</a></h2>
+
+		<div class="flex-row hidden lg:flex space-x-6 justify-self-center">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/tags">Category</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+		</div>
+		
+		<div class=" justify-self-end flex flex-row space-x-4">
+			<ThemeIcon />
+			<!-- 导航按钮 -->
+			<div id="navbtn" class="text-slate-700 dark:text-white block lg:hidden p-2 bg-gradient-to-br rounded-full dark:from-pink-700 dark:to-violet-800 from-cyan-200 to-orange-300">
+				<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+			</div>
+			<a class="text-slate-700 dark:text-white hidden lg:block" href="https://github.com/withastro/astro" target="_blank">
+				<span class="sr-only">Go to Astro's GitHub repo</span>
+				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
+					><path
+						fill="currentColor"
+						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+					></path></svg
+				>
+			</a>
+		</div>
+	</nav>
+</header>
+
+<style>
+.fixheight {
+	height: 2.5rem;
+}
+
+#wrapper {
+	clip-path: circle(10px at calc(100% - 35px) 35px);
+	transition: all 0.3s ease-in-out;
+	z-index: -10;
+}
+
+#wrapper.expand {
+	clip-path: circle(75% at 50% 50%);
+	transition: all 0.3s ease-in-out;
+}
+</style>
+
+<script>
+// 导航按钮
+const wrapper = document.getElementById('wrapper');
+const navBtn = document.querySelector('#navbtn');
+const svg = navBtn?.querySelector('svg')
+navBtn?.addEventListener('click', () => {
+	wrapper?.classList.toggle('expand');
+	navBtn?.classList.toggle("bg-gradient-to-br");
+	navBtn?.classList.toggle("bg-slate-300");
+	navBtn?.classList.toggle("dark:bg-slate-600");
+	if (wrapper?.classList.contains('expand')) {
+		svg.innerHTML = `<path d="M18 6 6 18"/><path d="m6 6 12 12"/>`
+	} else {
+		svg.innerHTML = `<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>`;
+	}
+});
+</script>
+
+{
+	nosticky && (<script>
+		// 向下滚动隐藏header，向上滚动显示header
+		let lastScrollTop = 0;
+		window.addEventListener('scroll', () => {
+			const currentScroll = window.scrollY || document.documentElement.scrollTop;
+			if (currentScroll > lastScrollTop) {
+				document.querySelector('header')?.classList.add('translate-y-[-5rem]');
+			} else {
+				document.querySelector('header')?.classList.remove('translate-y-[-5rem]');
+			}
+			lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+		}, false);
+	</script>)
+}

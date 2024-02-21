@@ -1,0 +1,28 @@
+<!-- 一言，打字机效果，每一个周期更换一句 -->
+<p id="hitokoto" class="text-base lg:text-lg text-white px-16 text-center">:D 获取中...</p>
+<script>
+function typeWriter(text, i, fnCallback) {
+  if (i < (text.length)) {
+    document.getElementById("hitokoto").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+    setTimeout(function() {
+      typeWriter(text, i + 1, fnCallback)
+    }, 100)
+  } else if (typeof fnCallback == 'function') {
+    setTimeout(fnCallback, 700)
+  }
+}
+function getHitokoto() {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.querySelector('#hitokoto')
+      hitokoto.innerHTML = ''
+      typeWriter(data.hitokoto, 0, function() {
+        hitokoto.innerHTML = data.hitokoto
+      })
+    })
+    .catch(console.error)
+}
+getHitokoto()
+setInterval(getHitokoto, 8000)
+</script>

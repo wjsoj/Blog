@@ -1,0 +1,12 @@
+---
+import { getCollection } from "astro:content";
+import DynamicTags from "../../components/DynamicTags"
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const allPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Category" description="article category">
+  <DynamicTags client:load blog={allPosts} />
+</BaseLayout>

@@ -1,0 +1,89 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hitokoto from '../components/Hitokoto.astro';
+import ScrollBox from '../components/ScrollBox.astro';
+import Avatar from '../components/Avatar.astro';
+import RecentPosts from '../components/RecentPosts.astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="bg-slate-100 dark:bg-slate-800">
+		<!-- 插入首页图片，占满屏幕，注意导航栏 -->
+		<Header class=" bg-transparent" limit/>
+		<div class="relative h-screen mt-[-2.5rem]">
+			<img
+				id="bg-day"
+				class=" absolute top-0 object-cover w-full h-full opacity-0 transition-opacity duration-1000"
+				src="/bg-day.jpeg"
+				alt="Home"
+			/>
+			<img
+				id="bg-night"
+				class=" absolute top-0 object-cover w-full h-full opacity-0 transition-opacity duration-1000"
+				src="/bg-night.jpeg"
+				alt="Home"
+			/>
+			<div class="absolute top-0 left-0 w-full h-full bg-black/20">
+				<div class="flex flex-col items-center justify-center space-y-2 h-full">
+					<h1 class="text-3xl lg:text-4xl font-bold text-white">Welcome to my blog</h1>
+					<Hitokoto />
+				</div>
+			</div>
+		</div>
+		
+		<Avatar />
+
+		<ScrollBox />
+		<div class="h-screen bg-fixed relative flex justify-center items-center bg-center" style="background-image: url('https://api.dujin.org/bing/1920.php');">
+			<div class="absolute w-full h-full bg-gradient-to-br from-slate-700 to-slate-900 opacity-30 dark:opacity-50 z-0"></div>
+			<h1 class="text-center text-3xl lg:text-6xl font-semibold text-bold text-white z-10">Here, I share my thoughts.</h1>
+		</div>
+
+		<RecentPosts />
+		
+		<Footer />
+		<script>
+			import "../scripts/vanilla-tilt.min.js"
+		</script>
+	</body>
+</html>
+
+<script>
+const navBarListener = () => {
+	const header = document.querySelector('nav');
+	if (window.scrollY > 100) {
+		header?.classList.remove('bg-transparent')
+		header?.classList.add('bg-slate-200/70','dark:bg-slate-700/30','backdrop-blur-lg');
+	} else {
+		header?.classList.remove('bg-slate-200/70','dark:bg-slate-700/30','backdrop-blur-lg');
+		header?.classList.add('bg-transparent')
+	}
+};
+window.addEventListener('scroll', navBarListener);
+
+// 初始化页面背景图片
+if (localStorage.getItem('theme') === 'light') {
+	document.querySelector('#bg-day')?.classList.add('active');
+} else {
+	document.querySelector('#bg-night')?.classList.add('active');
+}
+
+// 监听#themeToggle按钮点击事件，切换页面上的图片
+document.querySelector('#themeToggle')?.addEventListener('click', () => {
+	document.querySelector('#bg-day')?.classList.toggle('active');
+	document.querySelector('#bg-night')?.classList.toggle('active');
+});
+</script>
+
+<style>
+.active {
+	opacity: 1;
+}
+</style>

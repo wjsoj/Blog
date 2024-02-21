@@ -1,0 +1,20 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const { title, description,nosticky = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body class="flex flex-col w-screen bg-slate-100 dark:bg-slate-800 min-h-screen">
+		<Header class="w-full flex bg-slate-200/70 dark:bg-slate-700/30 backdrop-blur-lg" nosticky={nosticky}/>
+		<div class="flex grow justify-center">
+			<slot />
+		</div>
+		<Footer />
+	</body>
+</html>

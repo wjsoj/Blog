@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "./FormattedDate.jsx";
+
+const allPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<div class="h-screen flex flex-col justify-center lg:px-20 px-4 space-y-4">
+  <h1 class="font-bold lg:text-5xl text-3xl text-cyan-600 dark:text-pink-300 mb-8 lg:mb-10">Recent Posts</h1>
+  {
+    allPosts.slice(0,6).map((post) => (
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col-reverse lg:flex-row lg:basis-[85%]">
+          <div class="lg:basis-1/4">
+            <FormattedDate date={post.data.pubDate} className="text-sm lg:text-base"/>
+          </div>
+          <a href={`/blog/${post.slug}/`} class="lg:basis-3/4">
+            <h2 class="text-lg lg:text-[22px] font-semibold text-sky-700 dark:text-white text-wrap">{post.data.title}</h2>
+          </a>
+        </div>
+        <div class="hidden md:block badge lg:badge-lg badge-primary badge-outline">{post.data.tag}</div>
+      </div>
+    ))
+  }
+</div>

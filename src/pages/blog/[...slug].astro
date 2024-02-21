@@ -1,0 +1,126 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContent from '../../components/TableOfContent.astro';
+import FormattedDate from '../../components/FormattedDate.jsx';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content,headings } = await post.render();
+---
+
+
+<BaseLayout title={post.data.title} description={post.data.description} nosticky>
+	<div class="flex flex-col w-full items-center relative px-4">
+		<div class="flex flex-col items-center py-10 lg:py-20 space-y-4">
+			<h1 class="text-center text-wrap text-4xl leading-[4rem] md:text-5xl lg:text-6xl lg:leading-[6rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-tr from-pink-600 to-violet-500 dark:from-cyan-300 dark:to-orange-300">{post.data.title}</h1>
+			<FormattedDate date={post.data.pubDate} className="text-base lg:text-xl text-black dark:text-white" />
+			{
+				post.data.updatedDate && (
+					<div class="last-updated-on">
+						Last updated on <FormattedDate date={post.data.updatedDate} className="text-xl text-black dark:text-white" />
+					</div>
+				)
+			}
+			<div class="badge bg-cyan-400 dark:bg-violet-600 badge-lg font-bold text-black dark:text-white px-3 pb-1">
+				{post.data.tag}
+			</div>
+		</div>
+		<div class="flex flex-row-reverse justify-center items-start lg:ml-40">
+			<TableOfContent headings={headings} screen/>
+			<BlogPost {...post.data}>
+				<Content />
+			</BlogPost>
+		</div>
+		<div class="fixed bottom-0 right-0 p-4">
+			<span class="scroll-progress text-sm md:text-base">0%</span>
+		</div>
+
+		<!-- Return -->
+		<div class="fixed bottom-12 lg:bottom-10 right-4 lg:right-20 rounded-full border-2 border-slate-200 dark:border-slate-700 bg-pink-200 dark:bg-sky-900 p-2">
+			<a href="/blog">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 lg:w-8"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>
+			</a>
+		</div>
+
+		<!-- BackToTop -->
+		<div class="fixed hidden bottom-36 lg:bottom-24 mb-1 right-4 lg:right-20 rounded-full border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-2" id="backtop">
+			<a href="#top">
+				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 lg:w-8"><path d="M9 19h6"/><path d="M9 15v-3H5l7-7 7 7h-4v3H9z"/></svg>
+			</a>
+		</div>
+		
+		<!-- toc -->
+		<div class="drawer lg:hidden">
+			<input id="my-drawer" type="checkbox" class="drawer-toggle" />
+			<div class="drawer-content">
+				<!-- Page content here -->
+				<label for="my-drawer" >
+					<div class="fixed lg:hidden bottom-24 mb-1 right-4 lg:right-20 rounded-full border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-2">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-text"><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9.5 8h5"/><path d="M9.5 12H16"/><path d="M9.5 16H14"/></svg>
+					</div>
+				</label>
+			</div> 
+			<div class="drawer-side">
+				<label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+				<ul class="menu p-4 w-80 min-h-full pt-24 bg-base-200 text-base-content">
+					<TableOfContent headings={headings} />
+				</ul>
+			</div>
+		</div>
+	</div>
+</BaseLayout>
+
+<script>
+const observer = new IntersectionObserver(
+	(entries) => {
+		entries.forEach((entry) => {
+			const id = entry.target.getAttribute('id');
+			if (entry.isIntersecting) {
+				document.querySelectorAll(`nav.toc a.active`).forEach((a) => a.classList.remove('active'));
+				document.querySelector(`nav.toc a[href="#${id}"]`)?.classList.add('active');
+			}
+		});
+	},
+	{ rootMargin: '0% 0% -90% 0%' }
+);
+
+document.querySelectorAll('h2[id],h3[id]').forEach((section) => {
+	observer.observe(section);
+});
+
+// 监听页面滚动，显示或隐藏返回顶部按钮
+window.addEventListener('scroll', () => {
+	const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	const backToTop = document.querySelector('#backtop');
+	if (scrollTop > 100) {
+		backToTop.style.display = 'block';
+	} else {
+		backToTop.style.display = 'none';
+	}
+});
+// 监听页面滚动，显示滚动进度数字
+window.addEventListener('scroll', () => {
+	const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+	const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+	const percent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+	document.querySelector('.scroll-progress').innerText = `${percent.toFixed(2)}%`;
+	// 控制目录栏.toc跟随文章滚动
+	const toc = document.querySelector('nav.toc');
+	if (toc) {
+		// 比例换算
+		toc.scrollTop = scrollTop / (scrollHeight - clientHeight) * (toc.scrollHeight - toc.clientHeight);
+	}
+});
+
+</script>

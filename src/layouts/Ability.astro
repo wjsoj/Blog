@@ -1,0 +1,22 @@
+---
+const { title,desc,imgsrc } = Astro.props;
+---
+
+<div class="my-8 rounded-xl bg-slate-300/10 h-full w-full tiltout border-t-4 border-l-4 border-slate-400/20 dark:border-white/30 shadow-lg shadow-slate-600/20 dark:shadow-slate-500 backdrop-blur-md py-10 px-2 lg:px-8" data-tilt data-tilt-glare data-tilt-max-glare="0.8">
+  <div class="tiltin relative rounded-xl bg-transparent h-full flex flex-col justify-center items-center space-y-2 lg:space-y-8 bg-cover bg-center" style=`background-image: url(${imgsrc});`>
+    <div class="absolute w-full h-full bg-gradient-to-br from-slate-300/10 to-slate-700/50 dark:from-slate-500/10 dark:to-slate-900/50"></div>
+    <h2 class="text-4xl lg:text-6xl font-bold text-white z-10 text-center">&lt;{title} <span class=" text-blue-600">/</span>&gt;</h2>
+    <p class="text-xl lg:text-3xl text-slate-200 text-center max-w-sm z-10" set:html={desc} />
+    <slot />
+  </div>
+</div>
+
+<style>
+.tiltout {
+  transform-style: preserve-3d;
+  transform: perspective(2000px);
+}
+.tiltin {
+  transform: translateZ(100px)
+}
+</style>
